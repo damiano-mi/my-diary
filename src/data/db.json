@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Lorem ipsum",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et..."
+    },
+    {
+      "id": 2,
+      "title": "Exercitation ullamco laboris nisi ut aliqui",
+      "body": "Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud..."
+    }
+  ]
+}
