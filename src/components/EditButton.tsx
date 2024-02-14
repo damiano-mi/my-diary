@@ -1,18 +1,16 @@
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-const SOURCE = "http://localhost:3030/posts";
+import { urlUsers as SOURCE } from "../hooks/types";
 
-export default function EditButton({ id }: { id: number }) {
+export default function EditButton({ id }: { id: string }) {
 
-    function editPost(id: number) {
+    function editPost(id: string) {
         if (window.confirm("Do you want to edit the #" + id + " post?")) {
-            //console.log(SOURCE + "/?id=" + id);
-            axios.patch(SOURCE + "/?id=" + id,{
+            axios.patch(SOURCE + "/" + id,{
                 title: "new title",
                 body: "new body"
             })
                 .then((response) => {
-                    alert("Edited successfully.");
                     window.location.reload();
                 })
                 .catch((err) => {

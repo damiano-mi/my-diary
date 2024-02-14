@@ -1,16 +1,19 @@
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState } from "react";
-const SOURCE = "http://localhost:3030/posts";
+import { useNavigate } from "react-router-dom";
+import { urlUsers as SOURCE } from "../hooks/types";
 
 export default function NewPostForm() {
 
-  const [post, setPost] = useState({ id: 0, title: "", body: "" });
+  const [post, setPost] = useState({ id: "timestamp", title: "", body: "" });
+  const navigate = useNavigate();
 
-  function handleSubmit() {
-    axios.post(SOURCE, post)
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    axios.post(SOURCE + "/?name=user/", post) //<<-------------
       .then((response) => {
-        alert("Saved successfully");
+        navigate("/diary");
       })
       .catch((error) => {
         console.error("Error fetching data from the server:", error.message);
@@ -25,7 +28,7 @@ export default function NewPostForm() {
     <>
       <div className="container">
         <h1>Add new post:</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label htmlFor="id" className="form-label">Id</label>
             <input

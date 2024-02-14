@@ -1,14 +1,36 @@
 {
-  "posts": [
+  "users": [
     {
-      "id": 1,
-      "title": "Lorem ipsum",
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et..."
+      "name": "mark",
+      "password": "1234",
+      "posts": [
+        {
+          "id": "2024-02-01 11:03",
+          "title": "Primo post di mark",
+          "body": "testo primo post di mark"
+        },
+        {
+          "id": "2024-02-01 12:31",
+          "title": "Secondo post di mark",
+          "body": "testo secondo post di mark"
+        }
+      ]
     },
     {
-      "id": 2,
-      "title": "Exercitation ullamco laboris nisi ut aliqui",
-      "body": "Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud..."
+      "name": "charlie",
+      "password": "91011",
+      "posts": [
+        {
+          "id": "2024-01-06 18:01",
+          "title": "primo post di charlie",
+          "body": "testo primo post di charlie"
+        },
+        {
+          "id": "2024-01-21 16:31",
+          "title": "secondo post di charlie",
+          "body": "testo secondo post di charlie"
+        }
+      ]
     }
   ]
 }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-import { Post as Type }  from "./types";
+import { User as Type } from "./types";
 
 export default function useFetch(url: string) {
 

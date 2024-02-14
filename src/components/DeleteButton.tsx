@@ -1,15 +1,13 @@
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-const SOURCE = "http://localhost:3030/posts";
+import { urlUsers as SOURCE } from "../hooks/types";
 
-export default function DeleteButton({ id }: { id: number }) {
+export default function DeleteButton({ id }: { id: string }) {
 
-    function deletePost(id: number) {
+    function deletePost(id: string) {
         if (window.confirm("Do you want to remove the #" + id + " post?")) {
-            //console.log(SOURCE + "/?id=" + id);
-            axios.delete(SOURCE + "/?id=" + id)
+            axios.delete(SOURCE + "/" + id)
                 .then((response) => {
-                    alert("Removed successfully.");
                     window.location.reload();
                 })
                 .catch((err) => {

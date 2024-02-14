@@ -1,10 +1,17 @@
 export interface Post {
-    id: number;
-    title: string;
-    body: string;
+    id: string,
+    title: string,
+    body: string
 }
 
-interface User{
+export interface User{
     name: string,
-    password: string
+    password: string,
+    posts: [{
+        id: string,
+        title: string,
+        body: string
+    }]
 }
+export const urlUsers = "http://localhost:3030/users";
+//export const urlPosts = "http://localhost:3030/posts";
