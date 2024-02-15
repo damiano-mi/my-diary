@@ -2,44 +2,46 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { urlUsers as SOURCE } from "../hooks/types";
+import { urlPosts as SOURCE } from "../const/links";
+import { DIARY_ROUTE } from "../const/routes";
 
-export default function NewPostForm() {
+export default function NewPostForm({ id }: { id: string | undefined }) {
 
-  const [post, setPost] = useState({ id: "timestamp", title: "", body: "" });
+  const [post, setPost] = useState({ timestamp: "", title: "", body: "", userId: 2 });
   const navigate = useNavigate();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    axios.post(SOURCE + "/?name=user/", post) //<<-------------
-      .then((response) => {
-        navigate("/diary");
-      })
-      .catch((error) => {
-        console.error("Error fetching data from the server:", error.message);
-      });
+    if (id) {
+      axios.patch(SOURCE + "/" + id, post)
+        .then((response) => {
+          navigate(DIARY_ROUTE);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
+    else {
+      axios.post(SOURCE, post)
+        .then((response) => {
+          navigate(DIARY_ROUTE);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
   }
 
   function handlePost(e: any) {
-    setPost({ ...post, [e.target.name]: e.target.value });
+    const date = new Date();
+    setPost({ ...post, timestamp: date.toLocaleString(), [e.target.name]: e.target.value });
   }
 
   return (
     <>
       <div className="container">
-        <h1>Add new post:</h1>
+        {id ? <h1>Edit the post ✒</h1> : <h1>Add new post ➕</h1>}
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="mb-3">
-            <label htmlFor="id" className="form-label">Id</label>
-            <input
-              type="number"
-              className="form-control"
-              id="id"
-              name="id"
-              value={post.id}
-              onChange={handlePost}
-            />
-          </div>
 
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>

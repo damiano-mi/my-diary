@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import { DIARY_ROUTE, EDITOR_ROUTE, HOME_ROUTE } from "../const/routes";
 
 export default function Navbar() {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: "#053761" }}>
                 <div className="container">
-                    <Link className="navbar-brand" to="/">
+                    <Link className="navbar-brand" to={HOME_ROUTE}>
                         <div className="container">
                             <p className="navbar-brand">
                                 <img src="https://www.svgrepo.com/show/286823/diary.svg" width={36} height={36} alt="Logo" />
@@ -22,13 +23,13 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Home</Link>
+                                <Link className="nav-link" to={HOME_ROUTE}>Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/diary">Diary</Link>
+                                <Link className="nav-link" to={DIARY_ROUTE}>Diary</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/editor">Write new post</Link>
+                                <Link className="nav-link" to={EDITOR_ROUTE}>Write new post</Link>
                             </li>
                         </ul>
                     </div>

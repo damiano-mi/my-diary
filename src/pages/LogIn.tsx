@@ -1,15 +1,15 @@
-import axios from "axios";
+
 import { useState } from "react";
 import { Link } from "react-router-dom"
-import { urlUsers as SOURCE } from "../hooks/types";
-import { User } from "../hooks/types";
+import { urlUsers as SOURCE } from "../const/links";
+import { User } from "../const/types";
 import useFetch from "../hooks/useFetch";
 
 export default function LogIn() {
 
-    const [user, setUser] = useState({ name: "", password: "", posts: [] });
+    const [user, setUser] = useState({ id: 0, name: "", password: ""});
     const [isDisabled, setIsDisabled] = useState(true);
-    const { data } = useFetch(SOURCE); //http://localhost:3030/users
+    const { data } = useFetch(SOURCE);
 
     function handleSubmit(e: any) {
         const exists = (u : User) => u.name === user.name && u.password===user.password;

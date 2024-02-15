@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 
-export default function App() {
+export default function Home() {
 
   return (
     <>
