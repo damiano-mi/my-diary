@@ -1,14 +1,9 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "4aa7",
       "name": "mark",
-      "password": "1234"
-    },
-    {
-      "id": 2,
-      "name": "charlie",
-      "password": "91011"
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
     }
   ],
   "posts": [
@@ -18,6 +13,13 @@
       "title": "test",
       "body": "test",
       "userId": 0
+    },
+    {
+      "id": "f2d2",
+      "timestamp": "15/2/2024, 15:07:30",
+      "title": "Ciao 2",
+      "body": "ciao 2",
+      "userId": 2
     }
   ]
 }

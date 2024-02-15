@@ -1,29 +1,27 @@
-
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { urlUsers as SOURCE } from "../const/links";
-import { User } from "../const/types";
-import useFetch from "../hooks/useFetch";
-import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes";
-import md5 from "md5";
+import { LOGIN_ROUTE } from "../const/routes";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import md5 from "md5"
 
-export default function LogIn() {
+export default function Register() {
 
     const [user, setUser] = useState({ name: "", password: "" });
-    const { data } = useFetch(SOURCE);
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {
-        const exists = (u: User) => u.name === user.name && u.password === md5(user.password);
-        if (data.some(exists)) {
-            e.preventDefault();
-            navigate(DIARY_ROUTE);
-        }
-        else {
-            e.preventDefault();
-            alert("User does not exists");
-            setUser({ name: "", password: "" });
-        }
+        e.preventDefault();
+        let nameToSave = user.name;
+        let pwToSave = md5(user.password);
+        axios.post(SOURCE, {name: nameToSave,password: pwToSave})
+            .then((response) => {
+                navigate(LOGIN_ROUTE);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
     }
 
     function handlePerson(e: any) {
@@ -36,7 +34,7 @@ export default function LogIn() {
                 <div className="col-md-6">
                     <div className="card">
                         <div className="card-body">
-                            <h5 className="card-title">Log in</h5>
+                            <h5 className="card-title">Register</h5>
                             <form onSubmit={(e) => handleSubmit(e)}>
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label" >Name</label>
@@ -46,10 +44,12 @@ export default function LogIn() {
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="password" name="password" value={user.password} onChange={handlePerson} required/>
                                 </div>
-                                <button type="submit" className="btn btn-primary">Login</button>
+                                <div>
+                                    <button type="submit" className="btn btn-info">Register</button>
+                                </div>
                             </form>
                             <div className="my-3">
-                                <Link to={REGISTER_ROUTE}><p>Register here</p></Link>
+                                <Link to={LOGIN_ROUTE}><p>Log in here</p></Link>
                             </div>
                         </div>
                     </div>

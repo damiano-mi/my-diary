@@ -1,5 +1,4 @@
 export interface Post {
-    postId: number,
     timestamp: string,
     title: string,
     body: string,
@@ -7,7 +6,6 @@ export interface Post {
 }
 
 export interface User{
-    userId: number,
     name: string,
     password: string
 }
