@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlPosts as SOURCE } from "../const/links";
 import { DIARY_ROUTE } from "../const/routes";
+import { useUserContext } from "../hooks/useUserContext";
 
 export default function NewPostForm({ id }: { id: string | undefined }) {
-
-  const [post, setPost] = useState({ timestamp: "", title: "", body: "", userId: 2 });
+  const { user } = useUserContext();
+  const [post, setPost] = useState({ timestamp: "", title: "", body: "", author: user.name });
   const navigate = useNavigate();
-
+  
   function handleSubmit(e: any) {
     e.preventDefault();
     if (id) {

@@ -5,23 +5,34 @@ import { LOGIN_ROUTE } from "../const/routes";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import md5 from "md5"
+import useFetch from "../hooks/useFetch";
+import { User } from "../const/types";
 
 export default function Register() {
 
     const [user, setUser] = useState({ name: "", password: "" });
+    const { data } = useFetch(SOURCE);
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {
-        e.preventDefault();
-        let nameToSave = user.name;
-        let pwToSave = md5(user.password);
-        axios.post(SOURCE, {name: nameToSave,password: pwToSave})
-            .then((response) => {
-                navigate(LOGIN_ROUTE);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
+        const exists = (u: User) => u.name === user.name;
+        if (!data.some(exists)) {
+            e.preventDefault();
+            let nameToSave = user.name;
+            let pwToSave = md5(user.password);
+            axios.post(SOURCE, { name: nameToSave, password: pwToSave })
+                .then((response) => {
+                    navigate(LOGIN_ROUTE);
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        }
+        else {
+            e.preventDefault();
+            alert("Name taken");
+            setUser({ name: "", password: "" });
+        }
     }
 
     function handlePerson(e: any) {
@@ -38,11 +49,11 @@ export default function Register() {
                             <form onSubmit={(e) => handleSubmit(e)}>
                                 <div className="mb-3">
                                     <label htmlFor="name" className="form-label" >Name</label>
-                                    <input type="text" className="form-control" id="name" name="name" value={user.name} onChange={handlePerson} required/>
+                                    <input type="text" className="form-control" id="name" name="name" value={user.name} onChange={handlePerson} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="password" name="password" value={user.password} onChange={handlePerson} required/>
+                                    <input type="password" className="form-control" id="password" name="password" value={user.password} onChange={handlePerson} required />
                                 </div>
                                 <div>
                                     <button type="submit" className="btn btn-info">Register</button>

@@ -6,9 +6,10 @@ import { User } from "../const/types";
 import useFetch from "../hooks/useFetch";
 import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes";
 import md5 from "md5";
+import { useUserContext } from "../hooks/useUserContext";
 
 export default function LogIn() {
-
+    const {login} = useUserContext();
     const [user, setUser] = useState({ name: "", password: "" });
     const { data } = useFetch(SOURCE);
     const navigate = useNavigate();
@@ -21,13 +22,14 @@ export default function LogIn() {
         }
         else {
             e.preventDefault();
-            alert("User does not exists");
+            alert("User or password invalid");
             setUser({ name: "", password: "" });
         }
     }
 
     function handlePerson(e: any) {
         setUser({ ...user, [e.target.name]: e.target.value });
+        login({...user,[e.target.name]: e.target.value});
     }
 
     return (

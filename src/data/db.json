@@ -1,25 +1,28 @@
 {
   "users": [
     {
-      "id": "4aa7",
+      "id": "ead7",
       "name": "mark",
       "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "d547",
+      "name": "charlie",
+      "password": "c4ca4238a0b923820dcc509a6f75849b"
+    },
+    {
+      "id": "0946",
+      "name": "lorenzo",
+      "password": "c4ca4238a0b923820dcc509a6f75849b"
     }
   ],
   "posts": [
     {
-      "postId": "0",
-      "timestamp": "test",
-      "title": "test",
-      "body": "test",
-      "userId": 0
-    },
-    {
-      "id": "f2d2",
-      "timestamp": "15/2/2024, 15:07:30",
-      "title": "Ciao 2",
-      "body": "ciao 2",
-      "userId": 2
+      "id": "babf",
+      "timestamp": "15/2/2024, 16:23:13",
+      "title": "abruzzo",
+      "body": "laquila\n",
+      "author": "mark"
     }
   ]
 }

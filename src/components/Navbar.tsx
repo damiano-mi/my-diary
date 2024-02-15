@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import { DIARY_ROUTE, EDITOR_ROUTE, HOME_ROUTE } from "../const/routes";
+import { DIARY_ROUTE, EDITOR_ROUTE, HOME_ROUTE, PROFILE_ROUTE } from "../const/routes";
 
 export default function Navbar() {
     return (
@@ -30,6 +30,9 @@ export default function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to={EDITOR_ROUTE}>Write new post</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to={PROFILE_ROUTE}>Profile</Link>
                             </li>
                         </ul>
                     </div>

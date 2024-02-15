@@ -5,16 +5,18 @@ import EditButton from "../components/EditButton";
 import { Link } from "react-router-dom";
 import { urlPosts as SOURCE } from "../const/links";
 import { EDITOR_ROUTE } from "../const/routes";
+import { useUserContext } from "../hooks/useUserContext";
 
 export default function Diary() {
-
-  const { data: posts, isLoading, error } = useFetch(SOURCE + "?userId=2");
+  const { user } = useUserContext();
+  const { data: posts, isLoading, error } = useFetch(SOURCE + "?author="+ user.name);
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;
   return (
     <>
       <div className="container">
         {isLoading && <div className="spinner-border shadow"><span className="visually-hidden">Loading</span></div>}
-        {!isLoading && posts.length <= 0 ? <h1 className="row justify-content-center">Full your diary</h1> : ""}
+        {!isLoading && posts.length <= 0 ? <h1 className="row justify-content-center">Fill your diary</h1> :
+        <h1 className="row justify-content-center">{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()+"'s diary"}</h1>}
         {!isLoading && (
           <div className="row justify-content-center">
             {posts.map((post) => (

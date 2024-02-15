@@ -2,7 +2,7 @@ export interface Post {
     timestamp: string,
     title: string,
     body: string,
-    userId: number
+    author: string
 }
 
 export interface User{

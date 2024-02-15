@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Post, User} from "../const/types";
+import { Post, User } from "../const/types";
 import { urlPosts, urlUsers } from "../const/links";
 
 export default function useFetch(url: string) {
@@ -16,12 +16,12 @@ export default function useFetch(url: string) {
       try {
         const response = await axios.get(url);
         let data;
-        if(url === urlPosts)
+        if(url.includes(urlPosts))
           data = response.data as Post[];
-        else if(url === urlUsers)
+        else if(url.includes(urlUsers))
           data = response.data as User[];
         else
-          data = response.data;
+          data = response.data as any[];
 
         if (isCurrent)
           setData(data);
