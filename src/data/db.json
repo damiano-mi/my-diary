@@ -19,29 +19,27 @@
       "id": "ad74",
       "name": "paolo_rossi",
       "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "5bef",
+      "name": "george",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
     }
   ],
   "posts": [
     {
-      "id": "74bc",
-      "timestamp": "19/2/2024, 12:04:09",
-      "title": "Gita a Milano",
-      "body": "oggi sono",
-      "author": "mark"
-    },
-    {
-      "id": "9cec",
-      "timestamp": "19/2/2024, 12:04:17",
-      "title": "Caffe",
-      "body": "ho preso",
-      "author": "mark"
-    },
-    {
-      "id": "766a",
-      "timestamp": "19/2/2024, 12:06:45",
-      "title": "Prova",
-      "body": "Testo prova",
+      "id": "3614",
+      "timestamp": "19/2/2024, 13:05:04",
+      "title": "Napoli",
+      "body": "Costa",
       "author": "paolo_rossi"
+    },
+    {
+      "id": "ee7e",
+      "timestamp": "19/2/2024, 15:05:01",
+      "title": "Catania",
+      "body": "aa",
+      "author": "mark"
     }
   ]
 }

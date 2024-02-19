@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { urlUsers as SOURCE } from "../const/links";
 import { LOGIN_ROUTE } from "../const/routes";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import request from "../services/APIRequests";
 import md5 from "md5"
 import useFetch from "../hooks/useFetch";
 import { User } from "../types/types";
@@ -15,21 +15,17 @@ export default function Register() {
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {
+        e.preventDefault();
         const exists = (u: User) => u.name === user.name;
         if (!data.some(exists)) {
-            e.preventDefault();
             let nameToSave = user.name;
             let pwToSave = md5(user.password);
-            axios.post(SOURCE, { name: nameToSave, password: pwToSave })
+            request("post", SOURCE, { name: nameToSave, password: pwToSave })
                 .then((response) => {
                     navigate(LOGIN_ROUTE);
                 })
-                .catch((error) => {
-                    console.log(error.message);
-                });
         }
         else {
-            e.preventDefault();
             alert("Name taken");
             setUser({ name: "", password: "" });
         }

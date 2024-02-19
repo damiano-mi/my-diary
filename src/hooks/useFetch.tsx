@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import request from "../services/APIRequests";
 
 export default function useFetch<T>(url: string) {
 
@@ -12,7 +12,7 @@ export default function useFetch<T>(url: string) {
       setIsLoading(true);
       let isCurrent = true;
       try {
-        const response = await axios.get(url);
+        const response = await request("get",url,"");
         const data = response.data as T[];
 
         if (isCurrent)

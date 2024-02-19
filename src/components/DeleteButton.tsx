@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import axios from "axios";
+import request from "../services/APIRequests";
 import { urlPosts as SOURCE } from "../const/links";
 import { Post } from "../types/types";
 
@@ -13,14 +13,11 @@ const DeleteButton: React.FC<DeleteButtonProps> = (props: DeleteButtonProps) => 
     function deletePost(id: string) {
 
         if (window.confirm("Do you want to remove this post?")) {
-            axios.delete(SOURCE + "/" + id)
+            request("delete", SOURCE + "/" + id, "")
                 .then((response) => {
                     const remaining = props.data.filter((post) => post.id !== id)
                     props.setPosts(remaining);
                 })
-                .catch((err) => {
-                    console.log(err.message);
-                });
         }
     };
 

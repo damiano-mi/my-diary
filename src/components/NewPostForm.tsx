@@ -1,35 +1,25 @@
-import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlPosts as SOURCE } from "../const/links";
 import { DIARY_ROUTE } from "../const/routes";
 import { useUserContext } from "../hooks/useUserContext";
+import request from "../services/APIRequests";
 
 export default function NewPostForm({ id }: { id: string | undefined }) {
-  const { user } = useUserContext();
-  const [post, setPost] = useState({ timestamp: "", title: "", body: "", author: user.name });
-  const navigate = useNavigate();
   
+  const { user } = useUserContext();
+  const navigate = useNavigate();
+
+  const [post, setPost] = useState({ timestamp: "", title: "", body: "", author: user.name });
+
   function handleSubmit(e: any) {
     e.preventDefault();
     if (id) {
-      axios.patch(SOURCE + "/" + id, post)
-        .then((response) => {
-          navigate(DIARY_ROUTE);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
+      request("patch", SOURCE + "/" + id, post).then((response) => { navigate(DIARY_ROUTE); });
     }
     else {
-      axios.post(SOURCE, post)
-        .then((response) => {
-          navigate(DIARY_ROUTE);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
+      request("post", SOURCE, post).then((response) => { navigate(DIARY_ROUTE); });
     }
   }
 
