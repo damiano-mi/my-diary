@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { User } from "../const/types"
+import { User } from "../types/types"
 
 interface UserContextState {
     user: User

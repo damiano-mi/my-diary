@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { urlUsers as SOURCE } from "../const/links";
-import { User } from "../const/types";
+import { User } from "../types/types";
 import useFetch from "../hooks/useFetch";
 import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes";
 import md5 from "md5";
@@ -11,7 +11,7 @@ import { useUserContext } from "../hooks/useUserContext";
 export default function LogIn() {
     const {login} = useUserContext();
     const [user, setUser] = useState({ name: "", password: "" });
-    const { data } = useFetch(SOURCE);
+    const { data } = useFetch<User>(SOURCE);
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {

@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 import { urlPosts as SOURCE } from "../const/links";
 import { EDITOR_ROUTE } from "../const/routes";
 import { useUserContext } from "../hooks/useUserContext";
+import { Post } from "../types/types";
 
 export default function Diary() {
   const { user } = useUserContext();
-  const { data: posts, isLoading, error } = useFetch(SOURCE + "?author="+ user.name);
+  const { data : posts, setData : setPosts, isLoading, error } = useFetch<Post>(SOURCE + "?author="+ user.name);
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;
   return (
     <>
@@ -28,7 +29,7 @@ export default function Diary() {
                     <div className="card-text ms-2 my-4 p-3 border">{post.body.charAt(0).toUpperCase() + post.body.slice(1).toLowerCase()}</div>
                     <div className="container">
                       <div className="d-flex justify-content-center">
-                        <DeleteButton id={post.id} />
+                        <DeleteButton id={post.id} data={posts} setPosts={setPosts}/>
                         <EditButton id={post.id} />
                       </div>
                     </div>
@@ -40,7 +41,7 @@ export default function Diary() {
         )}
         <div className="container my-3">
           <div className="d-flex justify-content-center">
-            <Link className="nav-link shadow" to={EDITOR_ROUTE}><button className="btn btn-success">➕</button></Link>
+            <Link className="nav-link" to={EDITOR_ROUTE}><button className="btn btn-success shadow">➕</button></Link>
           </div>
         </div>
       </div>

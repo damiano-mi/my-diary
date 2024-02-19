@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import md5 from "md5"
 import useFetch from "../hooks/useFetch";
-import { User } from "../const/types";
+import { User } from "../types/types";
 
 export default function Register() {
 
     const [user, setUser] = useState({ name: "", password: "" });
-    const { data } = useFetch(SOURCE);
+    const { data } = useFetch<User>(SOURCE);
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Post, User } from "../const/types";
-import { urlPosts, urlUsers } from "../const/links";
 
-export default function useFetch(url: string) {
+export default function useFetch<T>(url: string) {
 
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,13 +13,7 @@ export default function useFetch(url: string) {
       let isCurrent = true;
       try {
         const response = await axios.get(url);
-        let data;
-        if(url.includes(urlPosts))
-          data = response.data as Post[];
-        else if(url.includes(urlUsers))
-          data = response.data as User[];
-        else
-          data = response.data as any[];
+        const data = response.data as T[];
 
         if (isCurrent)
           setData(data);
@@ -35,5 +27,5 @@ export default function useFetch(url: string) {
     };
     fetchData();
   }, [url]);
-  return { data, isLoading, error };
+  return { data, setData, isLoading, error };
 }

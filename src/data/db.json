@@ -14,15 +14,34 @@
       "id": "0946",
       "name": "lorenzo",
       "password": "c4ca4238a0b923820dcc509a6f75849b"
+    },
+    {
+      "id": "ad74",
+      "name": "paolo_rossi",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
     }
   ],
   "posts": [
     {
-      "id": "babf",
-      "timestamp": "15/2/2024, 16:23:13",
-      "title": "abruzzo",
-      "body": "laquila\n",
+      "id": "74bc",
+      "timestamp": "19/2/2024, 12:04:09",
+      "title": "Gita a Milano",
+      "body": "oggi sono",
       "author": "mark"
+    },
+    {
+      "id": "9cec",
+      "timestamp": "19/2/2024, 12:04:17",
+      "title": "Caffe",
+      "body": "ho preso",
+      "author": "mark"
+    },
+    {
+      "id": "766a",
+      "timestamp": "19/2/2024, 12:06:45",
+      "title": "Prova",
+      "body": "Testo prova",
+      "author": "paolo_rossi"
     }
   ]
 }
