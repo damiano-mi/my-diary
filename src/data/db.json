@@ -24,6 +24,11 @@
       "id": "5bef",
       "name": "george",
       "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "4a96",
+      "name": "Hal",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
     }
   ],
   "posts": [
@@ -35,11 +40,11 @@
       "author": "paolo_rossi"
     },
     {
-      "id": "ee7e",
-      "timestamp": "19/2/2024, 15:05:01",
-      "title": "Catania",
-      "body": "aa",
-      "author": "mark"
+      "id": "940f",
+      "timestamp": "19/2/2024, 16:57:05",
+      "title": "Luna",
+      "body": "Piena",
+      "author": "Hal"
     }
   ]
 }

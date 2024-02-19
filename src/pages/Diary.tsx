@@ -10,7 +10,7 @@ import { Post } from "../types/types";
 
 export default function Diary() {
   const { user } = useUserContext();
-  const { data : posts, setData : setPosts, isLoading, error } = useFetch<Post>(SOURCE + "?author="+ user.name);
+  const { data : posts, isLoading, error, fetchData } = useFetch<Post>(SOURCE + "?author="+ user.name);
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;
   return (
     <>
@@ -29,7 +29,7 @@ export default function Diary() {
                     <div className="card-text ms-2 my-4 p-3 border">{post.body.charAt(0).toUpperCase() + post.body.slice(1).toLowerCase()}</div>
                     <div className="container">
                       <div className="d-flex justify-content-center">
-                        <DeleteButton id={post.id} data={posts} setPosts={setPosts}/>
+                        <DeleteButton id={post.id} onClick={() => fetchData()} />
                         <EditButton id={post.id} />
                       </div>
                     </div>

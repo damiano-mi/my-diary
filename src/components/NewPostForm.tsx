@@ -44,6 +44,7 @@ export default function NewPostForm({ id }: { id: string | undefined }) {
               name="title"
               value={post.title}
               onChange={handlePost}
+              required
             />
           </div>
 
@@ -57,6 +58,7 @@ export default function NewPostForm({ id }: { id: string | undefined }) {
               name="body"
               value={post.body}
               onChange={handlePost}
+              required
             ></textarea>
           </div>
 
