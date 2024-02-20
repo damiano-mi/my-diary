@@ -1,23 +1,26 @@
-import useFetch from "../hooks/useFetch";
-import "bootstrap/dist/css/bootstrap.css";
-import DeleteButton from "../components/DeleteButton";
-import EditButton from "../components/EditButton";
-import { Link } from "react-router-dom";
-import { urlPosts as SOURCE } from "../const/links";
-import { EDITOR_ROUTE } from "../const/routes";
-import { useUserContext } from "../hooks/useUserContext";
-import { Post } from "../types/types";
+import { useUserContext } from "../hooks/useUserContext"
+import DeleteButton from "../components/DeleteButton"
+import { urlPosts as SOURCE } from "../const/links"
+import EditButton from "../components/EditButton"
+import { EDITOR_ROUTE } from "../const/routes"
+import "bootstrap/dist/css/bootstrap.css"
+import useFetch from "../hooks/useFetch"
+import { Link } from "react-router-dom"
+import { Post } from "../types/types"
 
 export default function Diary() {
+
   const { user } = useUserContext();
-  const { data : posts, isLoading, error, fetchData } = useFetch<Post>(SOURCE + "?author="+ user.name);
+  const { data: posts, isLoading, error, fetchData } = useFetch<Post>(SOURCE + "?author=" + user.name);
+
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;
+
   return (
     <>
       <div className="container">
         {isLoading && <div className="spinner-border shadow"><span className="visually-hidden">Loading</span></div>}
         {!isLoading && posts.length <= 0 ? <h1 className="row justify-content-center">Fill your diary</h1> :
-        <h1 className="row justify-content-center">{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()+"'s diary"}</h1>}
+          <h1 className="row justify-content-center">{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase() + "'s diary"}</h1>}
         {!isLoading && (
           <div className="row justify-content-center">
             {posts.map((post) => (

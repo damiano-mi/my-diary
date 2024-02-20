@@ -1,6 +1,6 @@
-import { Outlet, Navigate } from 'react-router-dom'
-import { useUserContext } from '../hooks/useUserContext';
-import { LOGIN_ROUTE } from '../const/routes';
+import { useUserContext } from "../hooks/useUserContext"
+import { Outlet, Navigate } from "react-router-dom"
+import { LOGIN_ROUTE } from "../const/routes"
 
 export default function ProtectedRoutes() {
     const {isLogged} = useUserContext();

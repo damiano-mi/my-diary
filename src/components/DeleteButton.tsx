@@ -1,6 +1,5 @@
-import "bootstrap/dist/css/bootstrap.css";
-import request from "../services/APIRequests";
-import { urlPosts as SOURCE } from "../const/links";
+import { deletePost } from "../services/APIRequests"
+import "bootstrap/dist/css/bootstrap.css"
 
 interface DeleteButtonProps {
     id: string,
@@ -8,10 +7,11 @@ interface DeleteButtonProps {
 }
 
 const DeleteButton: React.FC<DeleteButtonProps> = (props: DeleteButtonProps) => {
-    function deletePost(id: string) {
+
+    function handleDelete(id: string) {
 
         if (window.confirm("Do you want to remove this post?")) {
-            request("delete", SOURCE + "/" + id, "")
+            deletePost(id)
                 .then((response) => {
                     props.onClick();
                 })
@@ -19,7 +19,9 @@ const DeleteButton: React.FC<DeleteButtonProps> = (props: DeleteButtonProps) => 
     };
 
     return (
-        <button className="btn btn-danger me-2" onClick={() => deletePost(props.id)}>🗑</button>
+        <button className="btn btn-danger me-2"
+                onClick={() => handleDelete(props.id)}>🗑
+        </button>
     );
 }
 

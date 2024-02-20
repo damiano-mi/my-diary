@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { createUser } from "../services/APIRequests"
+import { urlUsers as SOURCE } from "../const/links"
+import { useNavigate } from "react-router-dom"
+import { LOGIN_ROUTE } from "../const/routes"
+import useFetch from "../hooks/useFetch"
 import { Link } from "react-router-dom"
-import { urlUsers as SOURCE } from "../const/links";
-import { LOGIN_ROUTE } from "../const/routes";
-import { useNavigate } from "react-router-dom";
-import request from "../services/APIRequests";
+import { User } from "../types/types"
+import { useState } from "react"
 import md5 from "md5"
-import useFetch from "../hooks/useFetch";
-import { User } from "../types/types";
 
 export default function Register() {
 
@@ -18,9 +18,7 @@ export default function Register() {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name;
         if (!data.some(exists)) {
-            let nameToSave = user.name;
-            let pwToSave = md5(user.password);
-            request("post", SOURCE, { name: nameToSave, password: pwToSave })
+            createUser({ name: user.name, password: md5(user.password) })
                 .then((response) => {
                     navigate(LOGIN_ROUTE);
                 })

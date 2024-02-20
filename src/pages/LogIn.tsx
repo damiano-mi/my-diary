@@ -1,17 +1,17 @@
-
-import { useEffect, useState } from "react";
+import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes"
+import { useUserContext } from "../hooks/useUserContext"
 import { Link, useNavigate } from "react-router-dom"
-import { urlUsers as SOURCE } from "../const/links";
-import { User } from "../types/types";
-import useFetch from "../hooks/useFetch";
-import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes";
-import md5 from "md5";
-import { useUserContext } from "../hooks/useUserContext";
+import { urlUsers as SOURCE } from "../const/links"
+import useFetch from "../hooks/useFetch"
+import { User } from "../types/types"
+import { useState } from "react"
+import md5 from "md5"
 
 export default function LogIn() {
-    const { login } = useUserContext();
+
     const [ user, setUser ] = useState({ name: "", password: "" });
     const { data } = useFetch<User>(SOURCE);
+    const { login } = useUserContext();
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {

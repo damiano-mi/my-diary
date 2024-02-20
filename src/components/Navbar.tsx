@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import { DIARY_ROUTE, EDITOR_ROUTE, HOME_ROUTE, PROFILE_ROUTE } from "../const/routes";
+import { DIARY_ROUTE, EDITOR_ROUTE, HOME_ROUTE, PROFILE_ROUTE } from "../const/routes"
+import "bootstrap/dist/css/bootstrap.css"
+import { Link } from "react-router-dom"
+import "bootstrap/dist/js/bootstrap.js"
 
 export default function Navbar() {
     return (
