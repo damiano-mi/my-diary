@@ -6,7 +6,7 @@ export default function useFetch<T>(url: string) {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
-  
+
   const fetchData = async () => {
     setIsLoading(true);
     let isCurrent = true;

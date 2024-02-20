@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 export default function Home() {
 
-  const {isLogged} = useUserContext();
+  const { isLogged } = useUserContext();
 
   return (
     <>
@@ -12,7 +12,7 @@ export default function Home() {
         <h1 className="row justify-content-center">Home</h1>
         <div className="container my-3">
           <div className="d-flex justify-content-center">
-            { isLogged ? "" : <Link to="/login"> <button className="btn btn-primary">Log in</button> </Link> }
+            {isLogged ? "" : <Link to="/login"> <button className="btn btn-primary">Log in</button> </Link>}
           </div>
         </div>
       </div>

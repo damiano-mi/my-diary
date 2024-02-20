@@ -34,9 +34,9 @@
   "posts": [
     {
       "id": "f3f1",
-      "timestamp": "20/2/2024, 12:47:58",
-      "title": "Roma",
-      "body": "Lazio",
+      "timestamp": "20/2/2024, 13:15:36",
+      "title": "Germania",
+      "body": "Berlino",
       "author": "mark"
     },
     {
@@ -45,6 +45,13 @@
       "title": "Frosinone",
       "body": "Latina",
       "author": "mark"
+    },
+    {
+      "id": "a169",
+      "timestamp": "20/2/2024, 15:26:16",
+      "title": "Spagna",
+      "body": "Madrid",
+      "author": "Hal"
     }
   ]
 }

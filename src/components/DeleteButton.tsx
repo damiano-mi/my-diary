@@ -20,7 +20,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = (props: DeleteButtonProps) => 
 
     return (
         <button className="btn btn-danger me-2"
-                onClick={() => handleDelete(props.id)}>🗑
+            onClick={() => handleDelete(props.id)}>🗑
         </button>
     );
 }

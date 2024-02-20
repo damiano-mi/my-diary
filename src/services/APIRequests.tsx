@@ -9,11 +9,11 @@ export function createUser(user: User) {
     return axiosInstance.post("/users", user);
 }
 
-export function getAll(url: string): Promise<User[] | Post[]>{
+export function getAll(url: string): Promise<User[] | Post[]> {
     return axiosInstance.get(url);
 }
 
-export function getPost(id: string){
+export function getPost(id: string) {
     return axiosInstance.get("/posts/" + id);
 }
 

@@ -5,7 +5,7 @@ export interface Post {
     author: string
 }
 
-export interface User{
+export interface User {
     name: string,
     password: string
 }

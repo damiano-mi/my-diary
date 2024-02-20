@@ -9,10 +9,10 @@ interface UserContextState {
 }
 
 const initialState = {
-    user: {name: "", password: ""},
+    user: { name: "", password: "" },
     isLogged: false,
-    login: (user: User) => {},
-    logout: () => {}
+    login: (user: User) => { },
+    logout: () => { }
 }
 
 const UserContext = createContext<UserContextState>(initialState);
@@ -22,21 +22,23 @@ interface UserProviderProps {
 }
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-    const [user, setUser] = useState<User>({name:"", password: ""});
+    const [user, setUser] = useState<User>({ name: "", password: "" });
     const [isLogged, setIsLogged] = useState<boolean>(false);
 
     const logout = () => {
-        setUser({name: "", password: ""});
+        setUser({ name: "", password: "" });
+        sessionStorage.removeItem("USER");
         setIsLogged(false);
     }
 
     const login = (user: User) => {
         setUser(user);
+        sessionStorage.setItem("USER", JSON.stringify(user));
         setIsLogged(true);
     }
 
     return (
-        <UserContext.Provider value={{user, isLogged, login, logout}}>
+        <UserContext.Provider value={{ user, isLogged, login, logout }}>
             {children}
         </UserContext.Provider>
     )

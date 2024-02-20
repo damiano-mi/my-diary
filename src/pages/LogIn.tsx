@@ -9,7 +9,7 @@ import md5 from "md5"
 
 export default function LogIn() {
 
-    const [ user, setUser ] = useState({ name: "", password: "" });
+    const [user, setUser] = useState({ name: "", password: "" });
     const { data } = useFetch<User>(SOURCE);
     const { login } = useUserContext();
     const navigate = useNavigate();
