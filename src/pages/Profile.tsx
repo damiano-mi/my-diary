@@ -1,14 +1,18 @@
-import { useUserContext } from "../hooks/useUserContext"
 import { HOME_ROUTE } from "../const/routes"
 import { Link } from "react-router-dom"
 import useFetch from "../hooks/useFetch";
 import { Post } from "../types/types";
 import { urlPosts as SOURCE } from "../const/links";
 
+import { useDispatch, useSelector, } from "react-redux";
+import { AppDispatch, RootState } from "../state/store";
+import { logout } from "../state/user/userSlice";
+
 const Profile = () => {
 
-  const { user, logout } = useUserContext();
+  const user = useSelector((state: RootState) => state.user.user);
   const { data } = useFetch<Post>(SOURCE + "?author=" + user.name);
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <>
@@ -36,7 +40,7 @@ const Profile = () => {
                       </div>
                       <div className="d-flex">
                         <Link to={HOME_ROUTE}>
-                          <button className="btn btn-secondary my-3" onClick={logout}>Logout</button>
+                          <button className="btn btn-secondary my-3" onClick={() => dispatch(logout())}>Logout</button>
                         </Link>
                       </div>
                     </div>

@@ -1,10 +1,11 @@
-import { useUserContext } from "../hooks/useUserContext"
 import "bootstrap/dist/css/bootstrap.css"
 import { Link } from "react-router-dom"
+import { RootState } from "../state/store";
+import { useSelector } from "react-redux";
 
 export default function Home() {
 
-  const { isLogged } = useUserContext();
+  const isLogged = useSelector((state: RootState) => state.user.isLogged);
 
   return (
     <>

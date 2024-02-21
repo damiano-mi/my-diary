@@ -1,4 +1,3 @@
-import { useUserContext } from "../hooks/useUserContext"
 import DeleteButton from "../components/DeleteButton"
 import { urlPosts as SOURCE } from "../const/links"
 import EditButton from "../components/EditButton"
@@ -7,10 +6,12 @@ import "bootstrap/dist/css/bootstrap.css"
 import useFetch from "../hooks/useFetch"
 import { Link } from "react-router-dom"
 import { Post } from "../types/types"
+import { useSelector } from "react-redux"
+import { RootState } from "../state/store"
 
 export default function Diary() {
 
-  const { user } = useUserContext();
+  const user = useSelector((state: RootState) => state.user.user);
   const { data: posts, isLoading, error, fetchData } = useFetch<Post>(SOURCE + "?author=" + user.name);
 
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;

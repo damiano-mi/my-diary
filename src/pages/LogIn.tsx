@@ -1,5 +1,4 @@
 import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes"
-import { useUserContext } from "../hooks/useUserContext"
 import { Link, useNavigate } from "react-router-dom"
 import { urlUsers as SOURCE } from "../const/links"
 import useFetch from "../hooks/useFetch"
@@ -7,23 +6,26 @@ import { User } from "../types/types"
 import { useState } from "react"
 import md5 from "md5"
 
+import { useDispatch, } from "react-redux";
+import { AppDispatch } from "../state/store";
+import { login } from "../state/user/userSlice";
+
 export default function LogIn() {
 
     const [user, setUser] = useState({ name: "", password: "" });
     const { data } = useFetch<User>(SOURCE);
-    const { login } = useUserContext();
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name && u.password === md5(user.password);
         if (data.some(exists)) {
-            login({ ...user, [e.target.name]: e.target.value });
+            dispatch(login({ ...user, [e.target.name]: e.target.value }));
             navigate(DIARY_ROUTE);
         }
         else {
             alert("User or password invalid");
-            //setUser({ name: "", password: "" });
         }
     }
 

@@ -1,13 +1,14 @@
 import { createPost, editPost } from "../services/APIRequests"
-import { useUserContext } from "../hooks/useUserContext"
 import { useNavigate } from "react-router-dom"
 import { DIARY_ROUTE } from "../const/routes"
 import "bootstrap/dist/css/bootstrap.css"
 import { useState } from "react"
+import { useSelector } from "react-redux"
+import { RootState } from "../state/store"
 
 export default function NewPostForm({ id }: { id: string | undefined }) {
 
-  const { user } = useUserContext();
+  const user = useSelector((state: RootState) => state.user.user);
   const [post, setPost] = useState({ timestamp: "", title: "", body: "", author: user.name });
   const navigate = useNavigate();
 
