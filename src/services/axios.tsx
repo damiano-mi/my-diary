@@ -1,8 +1,7 @@
-import { baseURL } from "../const/links"
 import axios from "axios"
 
 export const axiosInstance = axios.create({
-    baseURL: baseURL
+    baseURL: process.env.REACT_APP_BASE_URL
 });
 
 axiosInstance.interceptors.response.use(

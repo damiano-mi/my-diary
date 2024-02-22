@@ -1,5 +1,4 @@
 import DeleteButton from "../components/DeleteButton"
-import { urlPosts as SOURCE } from "../const/links"
 import EditButton from "../components/EditButton"
 import { EDITOR_ROUTE } from "../const/routes"
 import "bootstrap/dist/css/bootstrap.css"
@@ -12,8 +11,8 @@ import { RootState } from "../state/store"
 export default function Diary() {
 
   const user = useSelector((state: RootState) => state.user.user);
-  const { data: posts, isLoading, error, fetchData } = useFetch<Post>(SOURCE + "?author=" + user.name);
-
+  const { data: posts, isLoading, error, fetchData } = useFetch<Post>(process.env.REACT_APP_POSTS_BY_AUTHOR_URL + user.name);
+  
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;
 
   return (

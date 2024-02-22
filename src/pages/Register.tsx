@@ -1,5 +1,4 @@
 import { createUser } from "../services/APIRequests"
-import { urlUsers as SOURCE } from "../const/links"
 import { useNavigate } from "react-router-dom"
 import { LOGIN_ROUTE } from "../const/routes"
 import useFetch from "../hooks/useFetch"
@@ -11,7 +10,7 @@ import md5 from "md5"
 export default function Register() {
 
     const [user, setUser] = useState({ name: "", password: "" });
-    const { data } = useFetch<User>(SOURCE);
+    const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
     const navigate = useNavigate();
 
     function handleSubmit(e: any) {

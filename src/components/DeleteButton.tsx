@@ -1,7 +1,7 @@
 import { deletePost } from "../services/APIRequests"
 import "bootstrap/dist/css/bootstrap.css"
 
-interface DeleteButtonProps {
+type DeleteButtonProps = {
     id: string,
     onClick: () => void
 }

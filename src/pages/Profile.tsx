@@ -2,16 +2,15 @@ import { HOME_ROUTE } from "../const/routes"
 import { Link } from "react-router-dom"
 import useFetch from "../hooks/useFetch";
 import { Post } from "../types/types";
-import { urlPosts as SOURCE } from "../const/links";
 
 import { useDispatch, useSelector, } from "react-redux";
 import { AppDispatch, RootState } from "../state/store";
 import { logout } from "../state/user/userSlice";
 
-const Profile = () => {
+export default function Profile() {
 
   const user = useSelector((state: RootState) => state.user.user);
-  const { data } = useFetch<Post>(SOURCE + "?author=" + user.name);
+  const { data } = useFetch<Post>(process.env.REACT_APP_POSTS_BY_AUTHOR_URL + user.name);
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -55,5 +54,3 @@ const Profile = () => {
     </>
   );
 };
-
-export default Profile;

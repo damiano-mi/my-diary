@@ -6,7 +6,11 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../state/store"
 
-export default function NewPostForm({ id }: { id: string | undefined }) {
+type Props = {
+  id: string | undefined
+}
+
+export default function NewPostForm({ id }: Props) {
 
   const user = useSelector((state: RootState) => state.user.user);
   const [post, setPost] = useState({ timestamp: "", title: "", body: "", author: user.name });

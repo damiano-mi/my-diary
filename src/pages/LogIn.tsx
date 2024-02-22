@@ -1,6 +1,5 @@
 import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes"
 import { Link, useNavigate } from "react-router-dom"
-import { urlUsers as SOURCE } from "../const/links"
 import useFetch from "../hooks/useFetch"
 import { User } from "../types/types"
 import { useState } from "react"
@@ -13,10 +12,9 @@ import { login } from "../state/user/userSlice";
 export default function LogIn() {
 
     const [user, setUser] = useState({ name: "", password: "" });
-    const { data } = useFetch<User>(SOURCE);
+    const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-
     function handleSubmit(e: any) {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name && u.password === md5(user.password);
