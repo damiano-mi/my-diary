@@ -16,8 +16,15 @@ const postSlice = createSlice({
         setPost: (state, action: PayloadAction<Post>) => {
             state.post = action.payload;
         },
+        clearPost: (state) => {
+            state.post.body = "";
+            state.post.title = "";
+        },
+        setAuthorPost: (state, action: PayloadAction<string>) => {
+            state.post.author = action.payload;
+        }
     }
 });
 
-export const { setPost } = postSlice.actions;
+export const { setPost, clearPost, setAuthorPost } = postSlice.actions;
 export default postSlice.reducer;

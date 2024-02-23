@@ -2,9 +2,10 @@ import { createPost, editPost, getPost } from "../services/APIRequests"
 import { useNavigate } from "react-router-dom"
 import { DIARY_ROUTE } from "../const/routes"
 import "bootstrap/dist/css/bootstrap.css"
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { RootState } from "../state/store"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../state/store"
+import { clearPost, setPost, setAuthorPost } from "../state/post/postSlice"
 
 type Props = {
   id: string | undefined
@@ -13,10 +14,25 @@ type Props = {
 export default function NewPostForm({ id }: Props) {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.user);
-  const [post, setPost] = useState({ timestamp: "", title: "", body: "", author: user.name });
-  
-  useEffect(() => { if(id) getPost(id!).then((response) => { setPost(response.data) }) },[id]);
+  const post = useSelector((state: RootState) => state.post.post);
+
+  useEffect(() => {
+    dispatch(setAuthorPost(user.name))
+  }, [post]);
+
+  useEffect(() => {
+    if (!id) dispatch(clearPost())
+    else getPost(id!).then((response) => {
+      dispatch(setPost({
+        ...post,
+        timestamp: response.data.timestamp,
+        title: response.data.title,
+        body: response.data.body
+      }));
+    })
+  }, [id]);
 
   function handleSubmit(e: any) {
     e.preventDefault();
@@ -30,7 +46,7 @@ export default function NewPostForm({ id }: Props) {
 
   function handlePost(e: any) {
     const date = new Date();
-    setPost({ ...post, timestamp: date.toLocaleString(), [e.target.name]: e.target.value });
+    dispatch(setPost({ ...post, timestamp: date.toLocaleString(), [e.target.name]: e.target.value }));
   }
 
   return (
