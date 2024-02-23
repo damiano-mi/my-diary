@@ -6,6 +6,7 @@ import { Post } from "../types/types";
 import { useDispatch, useSelector, } from "react-redux";
 import { AppDispatch, RootState } from "../state/store";
 import { logout } from "../state/user/userSlice";
+import { upperCaseFormat } from "../utilities/formats";
 
 export default function Profile() {
 
@@ -29,7 +30,7 @@ export default function Profile() {
                       <img src="https://static-00.iconduck.com/assets.00/profile-circle-icon-2048x2048-cqe5466q.png" width={100} height={100} alt="propic" />
                     </p>
                     <div className="flex-grow-1 ms-3">
-                      <h2 className="mb-1">{user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase()}</h2>
+                      <h2 className="mb-1">{upperCaseFormat(user.name)}</h2>
                       <p className="mb-2 pb-1 ms-1">User</p>
                       <div className="d-flex justify-content-start rounded-3 p-2 mb-2">
                         <div>

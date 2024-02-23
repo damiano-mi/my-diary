@@ -6,14 +6,13 @@ import SessionRoute from "./components/SessionRoute"
 import "bootstrap/dist/css/bootstrap.css"
 import Navbar from "./components/Navbar"
 import Register from "./pages/Register"
+import { Provider } from "react-redux"
+import { store } from "./state/store"
 import Profile from "./pages/Profile"
 import Editor from "./pages/Editor"
 import LogIn from "./pages/LogIn"
 import Diary from "./pages/Diary"
 import Home from "./pages/Home"
-
-import { Provider } from "react-redux"
-import { store } from "./state/store"
 
 export default function App() {
 
