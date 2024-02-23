@@ -28,4 +28,4 @@ dist-ssr
 test-report.xml
 
 #Env
-.env.local
+#.env.local
