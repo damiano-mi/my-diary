@@ -14,7 +14,8 @@ export function getAll(url: string): Promise<User[] | Post[]> {
     return axiosInstance.get(url);
 }
 
-export function getPost(id: string) {
+export function getPost(id: string){
+    //console.log("URL:" + process.env.REACT_APP_BASE_URL + POSTS + id);
     return axiosInstance.get(POSTS + id);
 }
 

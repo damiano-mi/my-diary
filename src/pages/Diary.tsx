@@ -9,7 +9,12 @@ import { useSelector } from "react-redux"
 import { RootState } from "../state/store"
 
 export default function Diary() {
-
+  /*
+  const dispatch = useDispatch<AppDispatch>();
+  const currentPosts = useSelector((state: RootState) => state.posts.posts);
+  dispatch(setCurrentPosts(posts));
+  */
+  
   const user = useSelector((state: RootState) => state.user.user);
   const { data: posts, isLoading, error, fetchData } = useFetch<Post>(process.env.REACT_APP_POSTS_BY_AUTHOR_URL + user.name);
   

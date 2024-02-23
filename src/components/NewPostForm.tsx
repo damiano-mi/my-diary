@@ -1,8 +1,8 @@
-import { createPost, editPost } from "../services/APIRequests"
+import { createPost, editPost, getPost } from "../services/APIRequests"
 import { useNavigate } from "react-router-dom"
 import { DIARY_ROUTE } from "../const/routes"
 import "bootstrap/dist/css/bootstrap.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../state/store"
 
@@ -12,9 +12,11 @@ type Props = {
 
 export default function NewPostForm({ id }: Props) {
 
+  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.user);
   const [post, setPost] = useState({ timestamp: "", title: "", body: "", author: user.name });
-  const navigate = useNavigate();
+  
+  useEffect(() => { if(id) getPost(id!).then((response) => { setPost(response.data) }) },[id]);
 
   function handleSubmit(e: any) {
     e.preventDefault();
