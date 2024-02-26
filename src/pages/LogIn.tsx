@@ -5,15 +5,15 @@ import { User } from "../types/types"
 import { useState } from "react"
 import md5 from "md5"
 
-import { useDispatch, } from "react-redux";
-import { AppDispatch } from "../state/store";
-import { login } from "../state/user/userSlice";
+import { useDispatch, useSelector, } from "react-redux";
+import { AppDispatch, RootState } from "../state/store";
+import { loginAsync } from "../state/user/userSlice";
 
 export default function LogIn() {
 
     const [user, setUser] = useState({ name: "", password: "" });
     const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
-
+    const loading = useSelector((state: RootState) => state.user.loading);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     
@@ -21,7 +21,7 @@ export default function LogIn() {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name && u.password === md5(user.password);
         if (data.some(exists)) {
-            dispatch(login({ ...user, [e.target.name]: e.target.value }));
+            dispatch(loginAsync({ ...user, [e.target.name]: e.target.value }));
             navigate(DIARY_ROUTE);
         }
         else {
@@ -49,7 +49,7 @@ export default function LogIn() {
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="password" name="password" value={user.password} onChange={handlePerson} required />
                                 </div>
-                                <button type="submit" className="btn btn-primary">Login</button>
+                                <button type="submit" className="btn btn-primary">{loading ? "Loading..." : "Log in"}</button>
                             </form>
                             <div className="my-3">
                                 <Link to={REGISTER_ROUTE}><p>Register here</p></Link>
