@@ -1,8 +1,5 @@
 import { HOME_ROUTE } from "../const/routes"
 import { Link } from "react-router-dom"
-import useFetch from "../hooks/useFetch";
-import { Post } from "../types/types";
-
 import { useDispatch, useSelector, } from "react-redux";
 import { AppDispatch, RootState } from "../state/store";
 import { logout } from "../state/user/userSlice";
@@ -11,7 +8,7 @@ import { upperCaseFormat } from "../utilities/formats";
 export default function Profile() {
 
   const user = useSelector((state: RootState) => state.user.user);
-  const { data } = useFetch<Post>(process.env.REACT_APP_POSTS_BY_AUTHOR_URL + user.name);
+  const posts = useSelector((state: RootState) => state.posts.posts); //qui facevo di nuovo un fetch dei dati
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -35,7 +32,7 @@ export default function Profile() {
                       <div className="d-flex justify-content-start rounded-3 p-2 mb-2">
                         <div>
                           <p className="small text-muted mb-1">Posts</p>
-                          <p className="mb-0">{data.length}</p>
+                          <p className="mb-0">{posts.length}</p>
                         </div>
                       </div>
                       <div className="d-flex">

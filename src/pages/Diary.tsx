@@ -1,17 +1,25 @@
 import { upperCaseFormat } from "../utilities/formats"
 import PostsView from "../components/PostsView"
 import { EDITOR_ROUTE } from "../const/routes"
-import { RootState } from "../state/store"
-import { useSelector } from "react-redux"
+import { AppDispatch, RootState } from "../state/store"
+import { useDispatch, useSelector } from "react-redux"
 import "bootstrap/dist/css/bootstrap.css"
 import useFetch from "../hooks/useFetch"
 import { Link } from "react-router-dom"
 import { Post } from "../types/types"
+import { setPosts } from "../state/posts/postsSlice"
+import { useEffect } from "react"
 
 export default function Diary() {
 
   const user = useSelector((state: RootState) => state.user.user);
-  const { data: posts, isLoading, error, fetchData } = useFetch<Post>(process.env.REACT_APP_POSTS_BY_AUTHOR_URL + user.name);
+  const posts = useSelector((state: RootState) => state.posts.posts);
+  const { data, isLoading, error, fetchData } = useFetch<Post>(process.env.REACT_APP_POSTS_BY_AUTHOR_URL + user.name);
+  const dispatch = useDispatch<AppDispatch>();
+  
+  useEffect(() => {
+  dispatch(setPosts(data));
+  },[data]);
 
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;
 

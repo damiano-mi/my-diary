@@ -16,7 +16,7 @@ export default function LogIn() {
     const loading = useSelector((state: RootState) => state.user.loading);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    
+
     function handleSubmit(e: any) {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name && u.password === md5(user.password);
