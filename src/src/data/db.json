@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": "ead7",
+      "name": "mark",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "d547",
+      "name": "charlie",
+      "password": "c4ca4238a0b923820dcc509a6f75849b"
+    },
+    {
+      "id": "0946",
+      "name": "lorenzo",
+      "password": "c4ca4238a0b923820dcc509a6f75849b"
+    },
+    {
+      "id": "ad74",
+      "name": "paolo_rossi",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "5bef",
+      "name": "george",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "4a96",
+      "name": "Hal",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "1158",
+      "name": "Carlo",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "059b",
+      "name": "a",
+      "password": "0cc175b9c0f1b6a831c399e269772661"
+    },
+    {
+      "id": "c60d",
+      "name": "d",
+      "password": "8277e0910d750195b448797616e091ad"
+    },
+    {
+      "id": "1966",
+      "name": "w",
+      "password": "f1290186a5d0b1ceab27f4e77c0c5d68"
+    }
+  ],
+  "posts": [
+    {
+      "id": "a169",
+      "timestamp": "29/2/2024, 15:21:24",
+      "title": "Spagna",
+      "body": "Madrid",
+      "author": "mark"
+    },
+    {
+      "id": "b657",
+      "timestamp": "29/2/2024, 15:34:19",
+      "title": "Roma",
+      "body": "Lazio",
+      "author": "Hal"
+    }
+  ]
+}
