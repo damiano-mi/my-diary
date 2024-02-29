@@ -1,4 +1,3 @@
-import { createPost, editPost, getPost } from "../services/APIRequests"
 import { useNavigate } from "react-router-dom"
 import { DIARY_ROUTE } from "../const/routes"
 import "bootstrap/dist/css/bootstrap.css"
@@ -6,7 +5,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../state/store"
 import { clearPost, setPost, setAuthorPost } from "../state/post/postSlice"
-import { useCreatePostMutation } from "../services/serverAPI"
+import { serverAPI, useCreatePostMutation } from "../services/serverAPI"
 import { useEditPostMutation } from "../services/serverAPI"
 type Props = {
   id: string | undefined
@@ -20,22 +19,26 @@ export default function NewPostForm({ id }: Props) {
   const post = useSelector((state: RootState) => state.post.post);
   const [createPost] = useCreatePostMutation();
   const [editPost] = useEditPostMutation();
+  const useGetPostByIdQuery = serverAPI.endpoints.getPostById.useQuery
+  const { data } = useGetPostByIdQuery(id ? id! : "")
   
   useEffect(() => {
     dispatch(setAuthorPost(user.name))
   }, [post]);
-
+  
   useEffect(() => {
-    if (!id) dispatch(clearPost())
-    else getPost(id!).then((response) => {
+    if (!id){
+      dispatch(clearPost())
+    }
+    else if(data){
       dispatch(setPost({
         ...post,
-        timestamp: response.data.timestamp,
-        title: response.data.title,
-        body: response.data.body
+        timestamp: data.timestamp,
+        title: data.title,
+        body: data.body
       }));
-    })
-  }, [id]);
+    }
+  },[data,id]);
 
   function handleSubmit(e: any) {
     e.preventDefault();

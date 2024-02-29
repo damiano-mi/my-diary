@@ -29,27 +29,22 @@
       "id": "4a96",
       "name": "Hal",
       "password": "81dc9bdb52d04dc20036dbd8313ed055"
-    },
-    {
-      "id": "1158",
-      "name": "Carlo",
-      "password": "81dc9bdb52d04dc20036dbd8313ed055"
     }
   ],
   "posts": [
     {
-      "id": "5609",
-      "timestamp": "29/2/2024, 14:07:57",
-      "title": "Frosinone",
-      "body": "Latina",
+      "id": "a169",
+      "timestamp": "29/2/2024, 15:21:24",
+      "title": "Spagna",
+      "body": "Madrid",
       "author": "mark"
     },
     {
-      "id": "a169",
-      "timestamp": "23/2/2024, 16:08:25",
-      "title": "Spagna",
-      "body": "Madrid.",
-      "author": "mark"
+      "id": "b657",
+      "timestamp": "29/2/2024, 15:34:19",
+      "title": "Roma",
+      "body": "Lazio",
+      "author": "Hal"
     }
   ]
 }

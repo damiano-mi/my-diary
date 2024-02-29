@@ -5,16 +5,34 @@ import { Post, User } from '../types/types';
 export const serverAPI = createApi({
     reducerPath: 'serverAPI',
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
-    tagTypes: ['Posts'],
+    tagTypes: ['Posts', 'User'],
     endpoints: (builder) => ({
         getUsers: builder.query<User[], void>({
-            query: () => USERS
+            query: () => USERS,
+            providesTags: ['User']
         }),
         getUserByName: builder.query<User, string>({
-            query: (user: string) => USERS + user
+            query: (user: string) => USERS + user,
+            providesTags: ['User']
+        }),
+        createUser: builder.mutation({
+            query: body => ({
+                url: USERS,
+                method: 'POST',
+                body
+            }),
+            invalidatesTags: ['User'],
         }),
         getPosts: builder.query<Post[], void>({
             query: () => POSTS,
+            providesTags: ['Posts']
+        }),
+        getPostsByAuthor: builder.query<Post[], string>({
+            query: (author: string) => POSTS+author,
+            providesTags: ['Posts']
+        }),
+        getPostById: builder.query<Post, string>({
+            query: (id: string) => POSTS+id,
             providesTags: ['Posts']
         }),
         createPost: builder.mutation({
@@ -33,13 +51,6 @@ export const serverAPI = createApi({
             }),
             invalidatesTags: ['Posts'],
         }),
-        createUser: builder.mutation({
-            query: body => ({
-                url: USERS,
-                method: 'POST',
-                body
-            })
-        }),
         deletePost: builder.mutation<{ success: boolean; id: string }, string>({
             query: (id) => ({
                 url: POSTS + id,
@@ -57,5 +68,7 @@ export const {
     useGetPostsQuery,
     useCreatePostMutation,
     useEditPostMutation,
-    useDeletePostMutation
+    useDeletePostMutation,
+    useGetPostsByAuthorQuery,
+    useGetPostByIdQuery
 } = serverAPI

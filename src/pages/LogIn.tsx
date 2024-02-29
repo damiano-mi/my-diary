@@ -1,6 +1,5 @@
 import { DIARY_ROUTE, REGISTER_ROUTE } from "../const/routes"
 import { Link, useNavigate } from "react-router-dom"
-import useFetch from "../hooks/useFetch"
 import { User } from "../types/types"
 import { useState } from "react"
 import md5 from "md5"

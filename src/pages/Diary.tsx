@@ -4,9 +4,7 @@ import { EDITOR_ROUTE } from "../const/routes"
 import { AppDispatch, RootState } from "../state/store"
 import { useDispatch, useSelector } from "react-redux"
 import "bootstrap/dist/css/bootstrap.css"
-import useFetch from "../hooks/useFetch"
 import { Link } from "react-router-dom"
-import { Post } from "../types/types"
 import { setPosts } from "../state/posts/postsSlice"
 import { useEffect } from "react"
 import { serverAPI } from "../services/serverAPI"
@@ -16,13 +14,11 @@ export default function Diary() {
   const user = useSelector((state: RootState) => state.user.user);
   const posts = useSelector((state: RootState) => state.posts.posts);
   //const { data, isLoading, error, fetchData } = useFetch<Post>(process.env.REACT_APP_POSTS_BY_AUTHOR_URL + user.name);
-  const useGetPostsQuery = serverAPI.endpoints.getPosts.useQuery
-  const { data, isLoading, error } = useGetPostsQuery();
+  const useGetPostsByAuthorQuery = serverAPI.endpoints.getPostsByAuthor.useQuery
+  const { data, isLoading, error } = useGetPostsByAuthorQuery("?author="+user.name);
   const dispatch = useDispatch<AppDispatch>();
   
-  useEffect(() => {
-  dispatch(setPosts(data!));
-  },[data]);
+  useEffect(() => { dispatch(setPosts(data!)); },[data]);
 
   if (error) return <h1 className="text-center bg-dark my-1 text-white">Error in loading posts</h1>;
 

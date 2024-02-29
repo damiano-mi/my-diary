@@ -1,4 +1,3 @@
-import { deletePost } from "../services/APIRequests"
 import "bootstrap/dist/css/bootstrap.css"
 import { useDeletePostMutation } from "../services/serverAPI"
 

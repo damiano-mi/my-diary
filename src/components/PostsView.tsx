@@ -17,9 +17,9 @@ const PostsView: React.FC<PostsViewProps> = (props: PostsViewProps) => {
                     <div key={post.id} className="my-2">
                         <div className="card shadow">
                             <div className="card-body">
-                                <h3 className="card-title">{(post.title)}</h3>
+                                <h3 className="card-title">{upperCaseFormat(post.title)}</h3>
                                 <div className="card-text">{post.timestamp}</div>
-                                <div className="card-text ms-2 my-4 p-3 border">{(post.body)}</div>
+                                <div className="card-text ms-2 my-4 p-3 border">{upperCaseFormat(post.body)}</div>
                                 <div className="container">
                                     <div className="d-flex justify-content-center">
                                         <DeleteButton id={post.id}  />

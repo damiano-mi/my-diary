@@ -1,7 +1,6 @@
-import { useCreateUserMutation } from "../services/serverAPI"
+import { serverAPI, useCreateUserMutation } from "../services/serverAPI"
 import { useNavigate } from "react-router-dom"
 import { LOGIN_ROUTE } from "../const/routes"
-import useFetch from "../hooks/useFetch"
 import { Link } from "react-router-dom"
 import { User } from "../types/types"
 import { useState } from "react"
@@ -10,13 +9,15 @@ import md5 from "md5"
 export default function Register() {
 
     const [user, setUser] = useState({ name: "", password: "" });
-    const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
+    //const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
+    const useGetUsersQuery = serverAPI.endpoints.getUsers.useQuery
+    const { data } = useGetUsersQuery();
     const navigate = useNavigate();
     const [createUser] = useCreateUserMutation();
     function handleSubmit(e: any) {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name;
-        if (!data.some(exists)) {
+        if (data && !data.some(exists)) {
             createUser({ name: user.name, password: md5(user.password) })
             navigate(LOGIN_ROUTE)
             /*
