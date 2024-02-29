@@ -29,14 +29,19 @@
       "id": "4a96",
       "name": "Hal",
       "password": "81dc9bdb52d04dc20036dbd8313ed055"
+    },
+    {
+      "id": "1158",
+      "name": "Carlo",
+      "password": "81dc9bdb52d04dc20036dbd8313ed055"
     }
   ],
   "posts": [
     {
       "id": "5609",
-      "timestamp": "23/2/2024, 16:06:06",
+      "timestamp": "29/2/2024, 14:07:57",
       "title": "Frosinone",
-      "body": "Latina ",
+      "body": "Latina",
       "author": "mark"
     },
     {
@@ -45,13 +50,6 @@
       "title": "Spagna",
       "body": "Madrid.",
       "author": "mark"
-    },
-    {
-      "id": "d486",
-      "timestamp": "28/2/2024, 16:56:07",
-      "title": "Roma",
-      "body": "Lazio",
-      "author": "Hal"
     }
   ]
 }

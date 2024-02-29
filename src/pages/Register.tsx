@@ -1,4 +1,4 @@
-import { createUser } from "../services/APIRequests"
+import { useCreateUserMutation } from "../services/serverAPI"
 import { useNavigate } from "react-router-dom"
 import { LOGIN_ROUTE } from "../const/routes"
 import useFetch from "../hooks/useFetch"
@@ -12,15 +12,19 @@ export default function Register() {
     const [user, setUser] = useState({ name: "", password: "" });
     const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
     const navigate = useNavigate();
-
+    const [createUser] = useCreateUserMutation();
     function handleSubmit(e: any) {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name;
         if (!data.some(exists)) {
             createUser({ name: user.name, password: md5(user.password) })
+            navigate(LOGIN_ROUTE)
+            /*
+            createUser({ name: user.name, password: md5(user.password) })
                 .then((response) => {
                     navigate(LOGIN_ROUTE);
                 })
+            */
         }
         else {
             alert("Name taken");

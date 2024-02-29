@@ -8,11 +8,14 @@ import md5 from "md5"
 import { useDispatch, useSelector, } from "react-redux";
 import { AppDispatch, RootState } from "../state/store";
 import { loginAsync } from "../state/user/userSlice";
+import { serverAPI } from "../services/serverAPI"
 
 export default function LogIn() {
 
     const [user, setUser] = useState({ name: "", password: "" });
-    const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
+    //const { data } = useFetch<User>(process.env.REACT_APP_USERS_URL!);
+    const useGetUsersQuery = serverAPI.endpoints.getUsers.useQuery
+    const { data } = useGetUsersQuery();
     const loading = useSelector((state: RootState) => state.user.loading);
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
@@ -20,7 +23,7 @@ export default function LogIn() {
     function handleSubmit(e: any) {
         e.preventDefault();
         const exists = (u: User) => u.name === user.name && u.password === md5(user.password);
-        if (data.some(exists)) {
+        if (data && data.some(exists)) {
             dispatch(loginAsync({ ...user, [e.target.name]: e.target.value }));
             navigate(DIARY_ROUTE);
         }

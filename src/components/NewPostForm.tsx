@@ -6,7 +6,8 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "../state/store"
 import { clearPost, setPost, setAuthorPost } from "../state/post/postSlice"
-
+import { useCreatePostMutation } from "../services/serverAPI"
+import { useEditPostMutation } from "../services/serverAPI"
 type Props = {
   id: string | undefined
 }
@@ -17,7 +18,9 @@ export default function NewPostForm({ id }: Props) {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: RootState) => state.user.user);
   const post = useSelector((state: RootState) => state.post.post);
-
+  const [createPost] = useCreatePostMutation();
+  const [editPost] = useEditPostMutation();
+  
   useEffect(() => {
     dispatch(setAuthorPost(user.name))
   }, [post]);
@@ -37,10 +40,14 @@ export default function NewPostForm({ id }: Props) {
   function handleSubmit(e: any) {
     e.preventDefault();
     if (id) {
-      editPost(id, post).then((response) => { navigate(DIARY_ROUTE) });
+      //editPost(id, post).then((response) => { navigate(DIARY_ROUTE) });
+      editPost({id, post});
+      navigate(DIARY_ROUTE);
     }
     else {
-      createPost(post).then((response) => { navigate(DIARY_ROUTE) });
+      //createPost(post).then((response) => { navigate(DIARY_ROUTE) });
+      createPost(post);
+      navigate(DIARY_ROUTE);
     }
   }
 
